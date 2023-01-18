@@ -110,24 +110,24 @@ var specialCharacters = [
   ];
 
  /* Variables (store values here) */
-var passwordLength = "";
+/* var passwordLength = "";
 var selectSpecialChar;
 var selectNumericChar;
 var selectLowerCase;
-var selectUpperCase;
+var selectUpperCase; */
+
+let passwordLength;
   
   // Function to prompt user for password options
   function getPasswordOptions() {
-    confirm (" Do you want to generate a password?");
-    if (confirm = true) {
-        let passwordLength = (prompt ("How long would you like your password to be? (10-64 charachters)", "10"));
+         passwordLength = prompt ("How long would you like your password to be? (10-64 charachters)", "10");
         
      while (passwordLength <= 9 || passwordLength >= 65) {
         alert("Your password must be between 10 and 64 characters, please try again!");
          passwordLength = (prompt ("How long would you like your password to be? (10-64 charachters)", "10"));
      }
 
-    let selectSpecialChar = confirm("Click ok to include numeric characters");
+    let selectSpecialChar = confirm("Click ok to include special characters");
     let  selectNumericChar = confirm("Click ok to include numeric characters");
     let selectLowerCase = confirm("Click ok to include lowercase characters");
     let selectUpperCase = confirm("Click ok to include uppercase characters");
@@ -135,20 +135,28 @@ var selectUpperCase;
        while (!selectSpecialChar && !selectNumericChar && !selectLowerCase && !selectUpperCase) {
         alert("You must select at least one character value for your password");
 
-      selectSpecialChar = confirm("Click ok to include special characters");
+        return;
+
+/*       selectSpecialChar = confirm("Click ok to include special characters");
       selectNumericChar = confirm("Click ok to include numeric characters");
       selectLowerCase = confirm("Click ok to include lowercase characters");
-      selectUpperCase = confirm("Click ok to include uppercase characters");
+      selectUpperCase = confirm("Click ok to include uppercase characters"); */
+     }
+
+     return {
+      passwordLength: passwordLength,
+      selectSpecialChar: selectSpecialChar,
+      selectNumericChar: selectNumericChar,
+      selectLowerCase: selectLowerCase,
+      selectUpperCase: selectUpperCase,
      }
 
     }
-}
-  
 
   
   // Function for getting a random element from an array
 
-  var passwordCharSelection = []
+  /* var passwordCharSelection = []
 
   if (selectSpecialChar === true) {
     passwordCharSelection = passwordCharSelection.concat(specialCharacters)
@@ -166,17 +174,43 @@ var selectUpperCase;
     passwordCharSelection = passwordCharSelection.concat(lowerCasedCharacters)
   }
 
-  var randomPassword = ""
+  var randomPassword = "" */
 
-  function getRandom(arr) { 
-    for (var i=0; i < passwordLength; i++) {
-        randomPassword = randomPassword + passwordCharSelection[Math.floor(math.rnadom() * passwordCharSelection.length)];
-    }
-    return randomPassword
-  }
+  /* function getRandom(arr) { 
+    let randomIndex = Math.floor(Math.random() * arr.length);
+    return randomIndex;
+  } */
   
   // Function to generate password with user input
   function generatePassword() {
+    let result = [];
+    let options = getPasswordOptions();
+    let passwordCharSelection = []
+    if (options.selectSpecialChar) {
+      passwordCharSelection = passwordCharSelection.concat(specialCharacters)
+    }
+  
+    if (options.selectNumericChar) {
+      passwordCharSelection = passwordCharSelection.concat(numericCharacters)
+    }
+  
+    if (options.selectLowerCase) {
+      passwordCharSelection = passwordCharSelection.concat(upperCasedCharacters)
+    }
+  
+    if (options.selectUpperCase) {
+      passwordCharSelection = passwordCharSelection.concat(lowerCasedCharacters)
+    }
+
+    for (var i = 0; i < passwordLength; i++){
+      result.push(passwordCharSelection[Math.floor(Math.random() * passwordCharSelection.length)]);
+    }
+
+      let finalPassword = result.join(" ");
+
+      console.log(Math.floor(Math.random() * passwordCharSelection.length))
+      console.log(result)
+      return finalPassword
   
   }
   
@@ -194,7 +228,5 @@ var selectUpperCase;
   // Add event listener to generate button
   generateBtn.addEventListener('click', writePassword);
   
-  getPasswordOptions()
-  getSpecialChar()
-  console.log(passwordLength)
+  
   
