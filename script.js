@@ -116,6 +116,8 @@ var selectNumericChar;
 var selectLowerCase;
 var selectUpperCase; */
 
+/* sote value of password length globally so it is accessible by later function */
+
 let passwordLength;
   
   // Function to prompt user for password options
@@ -137,11 +139,15 @@ let passwordLength;
 
         return;
 
-/*       selectSpecialChar = confirm("Click ok to include special characters");
+
+
+/*   This code is redundant becuase i can use return to end the code and it starts again.    selectSpecialChar = confirm("Click ok to include special characters");
       selectNumericChar = confirm("Click ok to include numeric characters");
       selectLowerCase = confirm("Click ok to include lowercase characters");
       selectUpperCase = confirm("Click ok to include uppercase characters"); */
      }
+
+     /* storing boolean values in an object */
 
      return {
       passwordLength: passwordLength,
@@ -182,6 +188,9 @@ let passwordLength;
   } */
   
   // Function to generate password with user input
+  /* storing result as an array
+  running the get password options function
+  and storing the password options as a concatanated array */
   function generatePassword() {
     let result = [];
     let options = getPasswordOptions();
@@ -201,10 +210,12 @@ let passwordLength;
     if (options.selectUpperCase) {
       passwordCharSelection = passwordCharSelection.concat(lowerCasedCharacters)
     }
-
+/* pushing a random index number value fromthe selcected characters array in to the result array for the total length of the password */
     for (var i = 0; i < passwordLength; i++){
       result.push(passwordCharSelection[Math.floor(Math.random() * passwordCharSelection.length)]);
     }
+
+    /* the final password is all the values in the result array joined together */
 
       let finalPassword = result.join(" ");
 
@@ -212,7 +223,7 @@ let passwordLength;
       console.log(result)
       return finalPassword
   
-  }
+  } 
   
   // Get references to the #generate element
   var generateBtn = document.querySelector('#generate');
