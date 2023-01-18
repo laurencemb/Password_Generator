@@ -1,4 +1,5 @@
 # Password_Generator
+
 A Password Generator created using Javascript (module 5 Challenge)
 
 A portfolio site made using bootstrap components.
@@ -8,8 +9,7 @@ Portfolio site for all my front-end development work.
 
 Link to live site: https://laurencemb.github.io/Password_Generator/
 
-
-Screen shot of deployed site: 
+Screen shot of deployed site: ![screenshot of deployed wepage](Capture.JPG)
 
 Installation
 N/A
